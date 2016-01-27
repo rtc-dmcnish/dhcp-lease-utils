@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class DHCPLeaseParser {
+public class LeaseParser {
 	
 	private Scanner scanner = null; 
 	private List<String> activeLeases; 
 	
-	public DHCPLeaseParser(String leaseFile) {
+	public LeaseParser(String leaseFile) {
 		try {
 			this.scanner = new Scanner(new File(leaseFile));
 		} catch (FileNotFoundException e) {
