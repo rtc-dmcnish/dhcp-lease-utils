@@ -1,4 +1,4 @@
-package com.rtctel.net;
+package com.rtctel.net.dhcpd;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -39,11 +39,6 @@ public class DHCPLeaseParser {
 			}
 			scanner.nextLine(); 
 		}
-		
 		return activeLeases; 
-
 	}
-	
-	
-
 }

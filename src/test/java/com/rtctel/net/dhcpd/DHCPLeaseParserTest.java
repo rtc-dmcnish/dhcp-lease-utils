@@ -1,4 +1,4 @@
-package com.rtctel.net;
+package com.rtctel.net.dhcpd;
 
 import junit.framework.Assert;
 import junit.framework.TestCase;
