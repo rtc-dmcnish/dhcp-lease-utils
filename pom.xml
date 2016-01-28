@@ -5,7 +5,7 @@
 
   <groupId>com.rtctel.net</groupId>
   <artifactId>dhcpd-tools</artifactId>
-  <version>0.0.2-SNAPSHOT</version>
+  <version>0.0.3-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>dhcpd-tools</name>
@@ -21,6 +21,11 @@
       <artifactId>junit</artifactId>
       <version>3.8.1</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+  		<groupId>com.rtctel.net</groupId>
+  		<artifactId>subnet-tools</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
     </dependency>
   </dependencies>
 </project>
