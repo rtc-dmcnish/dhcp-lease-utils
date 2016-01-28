@@ -12,11 +12,13 @@ public class LeaseParser {
 	private Map<String,String> leases; 
 	
 	public LeaseParser(String leaseFile) {
-		try {
-			this.scanner = new Scanner(new File(leaseFile));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (leaseFile != null && !leaseFile.isEmpty()) {
+			try {
+				this.scanner = new Scanner(new File(leaseFile));
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	
