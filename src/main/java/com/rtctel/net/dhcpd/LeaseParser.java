@@ -2,16 +2,14 @@ package com.rtctel.net.dhcpd;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
-import java.util.Set;
 
 public class LeaseParser {
 	
 	private Scanner scanner = null; 
-	private Set<String> activeLeases; 
+	private Map<String,String> leases; 
 	
 	public LeaseParser(String leaseFile) {
 		try {
@@ -19,11 +17,11 @@ public class LeaseParser {
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}   
+		}
 	}
 	
-	public Set<String> allActiveLeases() {
-		activeLeases = new HashSet<String>(); 
+	public Map<String,String> allActiveLeases() {
+		leases = new HashMap<String,String>(); 
 		String lease = null; 
 		while (scanner.hasNextLine()) {
 			if (scanner.hasNext("lease")) {
@@ -34,13 +32,13 @@ public class LeaseParser {
 				scanner.next();
 				scanner.next();
 				String bState = scanner.next(); 
-				if (bState.equals("active;") && !lease.isEmpty() ) {
-					activeLeases.add(lease);
+				if (!lease.isEmpty()) {
+					leases.put(lease, bState.substring(0, bState.indexOf(";")));
 				}
 				scanner.nextLine(); 
 			}
 			scanner.nextLine(); 
 		}
-		return activeLeases;
+		return leases;
 	}
 }
