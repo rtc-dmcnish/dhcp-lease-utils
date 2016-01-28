@@ -3,13 +3,15 @@ package com.rtctel.net.dhcpd;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 public class LeaseParser {
 	
 	private Scanner scanner = null; 
-	private List<String> activeLeases; 
+	private Set<String> activeLeases; 
 	
 	public LeaseParser(String leaseFile) {
 		try {
@@ -20,8 +22,8 @@ public class LeaseParser {
 		}   
 	}
 	
-	public List<String> allActiveLeases() {
-		activeLeases = new ArrayList<String>(); 
+	public Set<String> allActiveLeases() {
+		activeLeases = new HashSet<String>(); 
 		String lease = null; 
 		while (scanner.hasNextLine()) {
 			if (scanner.hasNext("lease")) {
@@ -32,13 +34,13 @@ public class LeaseParser {
 				scanner.next();
 				scanner.next();
 				String bState = scanner.next(); 
-				if (bState.equals("active;") && !lease.isEmpty()) {
+				if (bState.equals("active;") && !lease.isEmpty() ) {
 					activeLeases.add(lease);
 				}
 				scanner.nextLine(); 
 			}
 			scanner.nextLine(); 
 		}
-		return activeLeases; 
+		return activeLeases;
 	}
 }
