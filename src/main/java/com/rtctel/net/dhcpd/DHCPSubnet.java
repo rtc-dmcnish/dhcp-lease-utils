@@ -4,18 +4,25 @@ import com.rtctel.net.util.Subnet;
 
 public class DHCPSubnet extends Subnet {
 	
-	int freeLeases = 0; 
-	int activeLeases = 0; 
+	Integer freeLeases = 0; 
+	Integer activeLeases = 0; 
 	
 	public DHCPSubnet(String network, int prefixLen) {
 		super(network,prefixLen); 
 	}
 	
-	public int getFreeLeases() {
+	public Integer getFreeLeases() {
 		return this.freeLeases;
 	}
 	
-	public int getActiveLeases() {
+	@Override
+	public String toString() {
+		return "DHCPSubnet [freeLeases=" + freeLeases + ", activeLeases=" + activeLeases + ", getFreeLeases()="
+				+ getFreeLeases() + ", getActiveLeases()=" + getActiveLeases() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+	}
+
+	public Integer getActiveLeases() {
 		return this.activeLeases; 
 	}
 	
