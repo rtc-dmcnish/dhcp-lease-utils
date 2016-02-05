@@ -1,25 +1,28 @@
 package com.rtctel.net.dhcpd;
 
-import com.rtctel.net.util.Subnet; 
+import org.apache.commons.net.util.SubnetUtils;
+import org.apache.commons.net.util.SubnetUtils.SubnetInfo; 
 
-public class DHCPSubnet extends Subnet {
+public class DHCPSubnet {
 	
-	Integer freeLeases = 0; 
-	Integer activeLeases = 0; 
+	private Integer freeLeases = 0;
+	private Integer activeLeases = 0; 
 	
-	public DHCPSubnet(String network, int prefixLen) {
-		super(network,prefixLen); 
+	private SubnetUtils su; 
+	
+	private SubnetInfo subnet; 
+	
+	public DHCPSubnet(String network, String prefixLen) {
+		this.su = new SubnetUtils(network + "/" + prefixLen); 
+		this.subnet = su.getInfo(); 
 	}
 	
 	public Integer getFreeLeases() {
 		return this.freeLeases;
 	}
 	
-	@Override
-	public String toString() {
-		return "DHCPSubnet [freeLeases=" + freeLeases + ", activeLeases=" + activeLeases + ", getFreeLeases()="
-				+ getFreeLeases() + ", getActiveLeases()=" + getActiveLeases() + ", getClass()=" + getClass()
-				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+	public boolean hasMemberIp(String ip) {
+		return this.subnet.isInRange(ip); 
 	}
 
 	public Integer getActiveLeases() {
@@ -32,6 +35,13 @@ public class DHCPSubnet extends Subnet {
 	
 	public void incrActive() {
 		this.activeLeases = this.activeLeases + 1; 
+	}
+	
+	@Override
+	public String toString() {
+		return "DHCPSubnet [freeLeases=" + freeLeases + ", activeLeases=" + activeLeases + ", getFreeLeases()="
+				+ getFreeLeases() + ", getActiveLeases()=" + getActiveLeases() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
 	
 }

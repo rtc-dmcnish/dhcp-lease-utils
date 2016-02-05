@@ -26,7 +26,7 @@ public class LeaseParser {
 		}
 	}
 			
-	public LeaseParser(String leaseFile, String network, int mask) {
+	public LeaseParser(String leaseFile, String network, String mask) {
 		this(leaseFile, new DHCPSubnet(network, mask)); 
 	}
 	
@@ -67,7 +67,6 @@ public class LeaseParser {
 	private void sort() {
 		for (String ip: this.leases.keySet()) {
 			if (subnet.hasMemberIp(ip)) {
-				System.out.println(this.leases.get(ip));
 				if (this.leases.get(ip).equals("active")) {
 					this.subnet.incrActive();
 				} else {
